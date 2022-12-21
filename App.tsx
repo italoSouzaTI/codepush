@@ -1,6 +1,8 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import codePush from "react-native-code-push";
+import { Routes } from './src/routes'
 
 // import { Container } from './styles';
 
@@ -8,27 +10,21 @@ function testecodepush () {
 
   useEffect(() => {
     codePush.sync({
-
       updateDialog: true,
       installMode: codePush.InstallMode.IMMEDIATE
     });
   }, [])
 
   return (
-    <View
-      style={styles.container}
-    >
-      <Text>codepush-atualizado</Text>
-      <Text>123</Text>
-    </View>
+    <NavigationContainer>
+      <Routes />
+    </NavigationContainer>
   );
 }
-
 export default codePush({
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME
 })(testecodepush);
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
     justifyContent: 'center',
